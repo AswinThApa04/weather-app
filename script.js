@@ -1,5 +1,4 @@
 let tempChartInstance = null;
-const apiKey = "e9434a7939a846cfbf3190342251404";
 const searchBtn = document.getElementById("search-btn");
 const cityInput = document.getElementById("city-input");
 const loader = document.getElementById("loader");
@@ -21,7 +20,7 @@ searchBtn.addEventListener("click", () => {
 function getWeather(city) {
   loader.classList.remove("hidden");
 
-  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=yes`;
+  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${CONFIG.API_KEY}&q=${city}&aqi=yes`;
 
   fetch(apiUrl)
     .then(response => response.json())
@@ -42,7 +41,7 @@ function getWeather(city) {
 function getWeatherByLocation(lat, lon) {
   loader.classList.remove("hidden");
 
-  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}&aqi=yes`;
+  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${CONFIG.API_KEY}&q=${lat},${lon}&aqi=yes`;
 
   fetch(apiUrl)
     .then(response => response.json())
@@ -104,7 +103,7 @@ document.getElementById("toggle-temp").addEventListener("click", () => {
 
 // Forecast API fetch
 function getForecast(city) {
-  const forecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=10`;
+  const forecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=${CONFIG.API_KEY}&q=${city}&days=10`;
 
   fetch(forecastUrl)
     .then(response => response.json())

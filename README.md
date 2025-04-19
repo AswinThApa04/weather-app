@@ -82,12 +82,7 @@ git push -u origin main
 - Folder: `/root`
 - Hit Save
 
-Your app will be live at:
-```
-https://YOUR_USERNAME.github.io/weather-app/
-```
 
----
 
 ## 🙌 Credits
 - Weather data from [WeatherAPI](https://www.weatherapi.com/)

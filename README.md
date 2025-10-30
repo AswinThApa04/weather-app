@@ -1,29 +1,29 @@
-# 🌦️ Weather App with Air Quality & Map
+#  Weather App with Air Quality & Map
 
 A beautiful, responsive, and fully-featured Weather App built using HTML, CSS, and JavaScript.
 This app displays:
-- Real-time weather conditions 🌡️
-- 10-day forecast 📅
-- Air Quality Index (PM2.5) 🌫️
-- Interactive map using Leaflet 🗺️
-- Temperature graph using Chart.js 📊
+- Real-time weather conditions 
+- 10-day forecast 
+- Air Quality Index (PM2.5) 
+- Interactive map using Leaflet 
+- Temperature graph using Chart.js 
 - Dark/Light theme toggle 🌙☀️
 
 ---
 
-## 🚀 Live Features
+##  Live Features
 
-- 🔍 Search by city
-- 📍 Auto-location detection
-- 🌫️ Air quality with color indicators
-- 🗺️ Map view centered on city/location
-- 🌡️ °C/°F temperature toggle
-- 📊 Line chart for 10-day forecast
-- 🌗 Dark & light mode
+-  Search by city
+-  Auto-location detection
+-  Air quality with color indicators
+-  Map view centered on city/location
+-  °C/°F temperature toggle
+-  Line chart for 10-day forecast
+-  Dark & light mode
 
 ---
 
-## 🔧 Technologies Used
+##  Technologies Used
 - HTML5 & CSS3
 - JavaScript (Vanilla)
 - [WeatherAPI.com](https://www.weatherapi.com/) for weather and AQI data
@@ -32,7 +32,7 @@ This app displays:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 ```
 weather-app/
 ├── index.html       # Main HTML
@@ -43,7 +43,7 @@ weather-app/
 
 ---
 
-## 🛠️ How to Run Locally
+##  How to Run Locally
 
 1. **Clone the repo:**
 ```bash
@@ -62,7 +62,7 @@ const apiKey = "YOUR_API_KEY_HERE";
 
 ---
 
-## ☁️ Deploying to GitHub Pages
+##  Deploying to GitHub Pages
 
 1. Commit your project:
 ```bash
@@ -84,15 +84,11 @@ git push -u origin main
 
 
 
-## 🙌 Credits
+##  Credits
 - Weather data from [WeatherAPI](https://www.weatherapi.com/)
 - Maps from [Leaflet.js](https://leafletjs.com/)
 - Icons and Charts by [Chart.js](https://www.chartjs.org/)
 
----
-
-## 📜 License
-MIT License
 
 ---
 

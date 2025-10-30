@@ -6,7 +6,6 @@ const themeToggle = document.getElementById("theme-toggle");
 let isCelsius = true;
 let currentData = null;
 
-// Search Button Handler
 searchBtn.addEventListener("click", () => {
   const cityName = cityInput.value.trim();
   if (cityName === "") {
@@ -16,7 +15,6 @@ searchBtn.addEventListener("click", () => {
   getWeather(cityName);
 });
 
-// Fetch current weather by city
 function getWeather(city) {
   loader.classList.remove("hidden");
 
@@ -37,7 +35,7 @@ function getWeather(city) {
     });
 }
 
-// Fetch weather by user location
+
 function getWeatherByLocation(lat, lon) {
   loader.classList.remove("hidden");
 
@@ -57,7 +55,6 @@ function getWeatherByLocation(lat, lon) {
     });
 }
 
-// Geolocation on page load
 window.addEventListener("load", () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -67,10 +64,9 @@ window.addEventListener("load", () => {
   }
 });
 
-// Display weather data
 function displayWeather(data) {
   const aqi = data.current.air_quality.pm2_5;
-  document.getElementById("air-quality").textContent = `🌫️ Air Quality (PM2.5): ${aqi.toFixed(1)}`;
+  document.getElementById("air-quality").textContent = ` Air Quality (PM2.5): ${aqi.toFixed(1)}`;
   let aqiColor = aqi <= 50 ? "green" : aqi <= 100 ? "yellow" : "red";
   document.getElementById("air-quality").style.color = aqiColor;
 
@@ -78,11 +74,10 @@ function displayWeather(data) {
 
   document.getElementById("city-name").textContent = `${data.location.name}, ${data.location.country}`;
   document.getElementById("description").textContent = data.current.condition.text;
-  document.getElementById("temperature").textContent = `🌡️ ${data.current.temp_c} °C`;
-  document.getElementById("humidity").textContent = `💧 Humidity: ${data.current.humidity}%`;
+  document.getElementById("temperature").textContent = ` ${data.current.temp_c} °C`;
+  document.getElementById("humidity").textContent = ` Humidity: ${data.current.humidity}%`;
   document.getElementById("weather-icon").src = data.current.condition.icon;
 
-  // Add this line to show the map
   showMap(data.location.lat, data.location.lon);
 
   document.getElementById("weather-info").classList.remove("hidden");
@@ -90,7 +85,7 @@ function displayWeather(data) {
   document.getElementById("toggle-temp").classList.remove("hidden");
 }
 
-// Update temp toggle
+
 document.getElementById("toggle-temp").addEventListener("click", () => {
   if (!currentData) return;
 
@@ -101,7 +96,7 @@ document.getElementById("toggle-temp").addEventListener("click", () => {
   document.getElementById("toggle-temp").textContent = isCelsius ? "Switch to °F" : "Switch to °C";
 });
 
-// Forecast API fetch
+
 function getForecast(city) {
   const forecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=${CONFIG.API_KEY}&q=${city}&days=10`;
 
@@ -115,7 +110,6 @@ function getForecast(city) {
     });
 }
 
-// Render forecast cards
 function displayForecast(days) {
   const container = document.getElementById("forecast-container");
   const title = document.getElementById("forecast-title");
@@ -131,9 +125,9 @@ function displayForecast(days) {
       <h3>${day.date}</h3>
       <img src="${day.day.condition.icon}" alt="${day.day.condition.text}" />
       <p>${day.day.condition.text}</p>
-      <p>🌡️ Max: ${day.day.maxtemp_c}°C</p>
-      <p>❄️ Min: ${day.day.mintemp_c}°C</p>
-      <p>💧 Humidity: ${day.day.avghumidity}%</p>
+      <p> Max: ${day.day.maxtemp_c}°C</p>
+      <p> Min: ${day.day.mintemp_c}°C</p>
+      <p> Humidity: ${day.day.avghumidity}%</p>
     `;
     container.appendChild(card);
   });
@@ -146,12 +140,10 @@ function renderTemperatureChart(forecastDays) {
   const maxTemps = forecastDays.map(day => day.day.maxtemp_c);
   const minTemps = forecastDays.map(day => day.day.mintemp_c);
 
-  // Destroy the old chart instance if it exists
   if (tempChartInstance) {
     tempChartInstance.destroy();
   }
 
-  // Create new chart
   tempChartInstance = new Chart(ctx, {
     type: 'line',
     data: {
@@ -207,7 +199,6 @@ function renderTemperatureChart(forecastDays) {
 let map;
 
 function showMap(lat, lon) {
-  // Initialize the map if it doesn't exist
   if (!map) {
     map = L.map('map', {
       center: [lat, lon],
@@ -220,34 +211,26 @@ function showMap(lat, lon) {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
     
-    // Add zoom controls
     L.control.zoom({
       position: 'topright'
     }).addTo(map);
   } else {
-    // If map exists, just update the view
     map.setView([lat, lon], 12);
   }
   
-  // Clear previous markers if any
   if (window.currentMarker) {
     map.removeLayer(window.currentMarker);
   }
   
-  // Add new marker with a popup
   window.currentMarker = L.marker([lat, lon]).addTo(map)
     .bindPopup(`<b>${currentData.location.name}</b><br>${currentData.current.condition.text}`)
     .openPopup();
-  
-  // Force map to resize in case it was hidden initially
   setTimeout(() => {
     map.invalidateSize();
   }, 100);
 }
 
 
-
-// Theme Toggle (with localStorage)
 window.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("weather-theme");
   if (savedTheme === "dark") {

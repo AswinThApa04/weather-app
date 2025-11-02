@@ -17,9 +17,7 @@ searchBtn.addEventListener("click", () => {
 
 function getWeather(city) {
   loader.classList.remove("hidden");
-
   const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${CONFIG.API_KEY}&q=${city}&aqi=yes`;
-
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
@@ -38,9 +36,7 @@ function getWeather(city) {
 
 function getWeatherByLocation(lat, lon) {
   loader.classList.remove("hidden");
-
   const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${CONFIG.API_KEY}&q=${lat},${lon}&aqi=yes`;
-
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
@@ -49,6 +45,7 @@ function getWeatherByLocation(lat, lon) {
       loader.classList.add("hidden");
     })
     .catch(error => {
+      
       console.error("Location weather error:", error);
       document.getElementById("error-message").classList.remove("hidden");
       loader.classList.add("hidden");
